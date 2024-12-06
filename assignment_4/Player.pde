@@ -16,6 +16,10 @@ class Player {
     noStroke();
     fill(#FF03D6);
     rect (position.x, position.y, playerSize.x, playerSize.y);
+    fill(0);
+    ellipseMode(CENTER);
+    ellipse (position.x + 10, position.y + 15, 3, 15);
+    ellipse (position.x + 20, position.y + 15, 3, 15);
   }
 
   void move() {

@@ -20,7 +20,7 @@ void draw(){
   stroke(#03C6FF);
   strokeWeight(3);
   fill(0);
-  rect(0, 260, 398, 138);
+  rect(0, 300, 398, 138);
   
   player.display();
   player.move();
