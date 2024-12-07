@@ -13,7 +13,7 @@ class Obstacle {
   void move() {
     obstaclePosition.x -= obstacleSpeed;
     if (obstaclePosition.x < -100) {
-      obstacleSize = new PVector (random(20, 60), random(20, 200));
+      obstacleSize = new PVector (random(20, 60), random(20, 300));
       obstaclePosition.x = 500;
       obstaclePosition.y = 300 - obstacleSize.y;
       obstacleSpeed = random (5, 10);
