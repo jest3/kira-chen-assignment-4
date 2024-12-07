@@ -10,6 +10,7 @@ PVector playerVelocity = new PVector (0, 0);
 
 PVector obstacleSize = new PVector (random (20, 60), random (20, 200));
 PVector obstaclePosition = new PVector (500, 300 - obstacleSize.y);
+//makes sure the first obstacle is never too fast
 float obstacleSpeed = 5;
 
 //sets timer to 30 seconds
@@ -90,17 +91,25 @@ void obstacleCollision() {
 //timer function
 void timer() {
   //decreases timer by 1 every 60 frames
+  //timer only counts down during gameplay and not after a win/loss conidtion
   if (frameCount % frameRate == 0 && gameOver == false && gameWin == false) {
     timer--;
   }
+  
   //if timer reaches 0 win condition is reached
+  //timer can't reach 0 to trigger game win if gameOver is true
   if (timer <= 0 && gameOver == false) {
     gameWin = true;
     gameOver = false;
   }
+  //adds countdown timer at the corner of the screen
+  fill(#FF00E6);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  text(timer, 350, 30);
 }
 
-//displays winn screen
+//displays win screen
 void gameWin() {
   stroke(#00FF30);
   fill(0);
@@ -113,8 +122,10 @@ void gameWin() {
   textSize(32);
   text("Click to reset", width/2, 290);
 
+  //stops the possibility of an obstacle hitting the player after game has ended
   obstaclePosition.x = 200;
 
+  //resets game when mouse is pressed
   if (mousePressed) {
     reset();
   }
@@ -133,8 +144,10 @@ void gameOver() {
   textSize(32);
   text("Click to reset", width/2, 290);
 
+  //stops the possibility of an obstacle hitting the player after game has ended
   obstaclePosition.x = 200;
 
+  //resets game when mouse is pressed
   if (mousePressed) {
     reset();
   }
@@ -142,27 +155,32 @@ void gameOver() {
 
 //
 void reset() {
-  if (gameWin == true && mousePressed){
-  gameWin = false;
-  gameOver = false;
-  timer = 30;
+  //checks if mouse has been clicked after win screen to trigger reset
+  if (gameWin == true && mousePressed) {
+    //sets win/loss conditions to false so the win condition resets
+    gameWin = false;
+    gameOver = false;
+    //sets timer back to 30
+    timer = 30;
 
-  obstacleSize = new PVector (random (20, 60), random (20, 200));
-  obstaclePosition = new PVector (500, 300 - obstacleSize.y);
-  obstacleSpeed = 5;
-  playerPosition = new PVector (50, 260);
-
-  frameCount = 0;
+    //resets obstacles
+    obstacleSize = new PVector (random (20, 60), random (20, 200));
+    obstaclePosition = new PVector (500, 300 - obstacleSize.y);
+    obstacleSpeed = 5;
+    //resets the player position
+    playerPosition = new PVector (50, 260);
   }
-  
-  if (gameOver == true && mousePressed){
-  gameWin = false;
-  gameOver = false;
-  timer = 30;
 
-  obstacleSize = new PVector (random (20, 60), random (20, 200));
-  obstaclePosition = new PVector (500, 300 - obstacleSize.y);
-  obstacleSpeed = 5;
-  playerPosition = new PVector (50, 260);
+//same idea for game over screen
+//I probably could've wrote it all in the same statement but I seperated them cause I was looking for errors
+  if (gameOver == true && mousePressed) {
+    gameWin = false;
+    gameOver = false;
+    timer = 30;
+
+    obstacleSize = new PVector (random (20, 60), random (20, 200));
+    obstaclePosition = new PVector (500, 300 - obstacleSize.y);
+    obstacleSpeed = 5;
+    playerPosition = new PVector (50, 260);
   }
 }
