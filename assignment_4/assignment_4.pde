@@ -2,7 +2,7 @@
 //assignment 4
 
 PVector playerSize = new PVector (30, 40);
-PVector obstacleSize = new PVector (random (20, 60), random (20, 140));
+PVector obstacleSize = new PVector (random (20, 60), random (20, 200));
 
 Player player;
 Obstacle obstacle;
@@ -12,7 +12,6 @@ void setup(){
 
 player = new Player();
 obstacle = new Obstacle ();
-
 }
 
 void draw(){
