@@ -1,13 +1,11 @@
 class Player {
 
   //variables to control movemenet
-  PVector position, velocity, acceleration;
+  PVector acceleration;
   boolean pressingUp;
 
   //constructor
   Player() {
-    position = new PVector (50, 260);
-    velocity = new PVector (0, 0);
     acceleration = new PVector (0, 0.5);
   }
 
@@ -15,19 +13,28 @@ class Player {
     //drawing player
     noStroke();
     fill(#FF03D6);
-    rect (position.x, position.y, playerSize.x, playerSize.y);
+    rect (playerPosition.x, playerPosition.y, playerSize.x, playerSize.y);
     fill(0);
     ellipseMode(CENTER);
-    ellipse (position.x + 10, position.y + 15, 3, 15);
-    ellipse (position.x + 20, position.y + 15, 3, 15);
+    ellipse (playerPosition.x + 10, playerPosition.y + 15, 3, 15);
+    ellipse (playerPosition.x + 20, playerPosition.y + 15, 3, 15);
+  }
+
+  //checks if player comes in contact with ground level
+  void groundCollision() {
+    if (playerPosition.y + playerSize.y > 300) {
+      //ensures player position remains above ground level
+      playerPosition.y = 300 - playerSize.y;
+      playerVelocity.y = 0;
+    }
   }
 
   void move() {
     if (pressingUp == true) {
-      velocity.y = -10;
+      playerVelocity.y = -10;
     }
-    velocity.y += acceleration.y;
-    position.add(velocity);
+    playerVelocity.y += acceleration.y;
+    playerPosition.add(playerVelocity);
   }
 
   void keyPressed() {
@@ -35,6 +42,7 @@ class Player {
       pressingUp = true;
     }
   }
+
   void keyReleased() {
     if (keyCode == UP) {
       pressingUp = false;

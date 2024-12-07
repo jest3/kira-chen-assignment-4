@@ -2,8 +2,12 @@
 //assignment 4
 
 PVector playerSize = new PVector (30, 40);
+PVector playerPosition = new PVector (50, 260);
+PVector playerVelocity = new PVector (0, 0);
+
 PVector obstacleSize = new PVector (random (20, 60), random (20, 200));
 boolean gameOver;
+boolean collision;
 
 Player player;
 Obstacle obstacle;
@@ -27,6 +31,7 @@ void draw(){
   
   player.display();
   player.move();
+  player.groundCollision();
   
   obstacle.display();
   obstacle.move();
