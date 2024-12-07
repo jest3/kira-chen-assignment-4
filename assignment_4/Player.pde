@@ -6,6 +6,7 @@ class Player {
 
   //constructor
   Player() {
+    //makes movement feel less static
     acceleration = new PVector (0, 0.5);
   }
 
@@ -16,6 +17,7 @@ class Player {
     rect (playerPosition.x, playerPosition.y, playerSize.x, playerSize.y);
     fill(0);
     ellipseMode(CENTER);
+    //ensures drawing of player updates with position
     ellipse (playerPosition.x + 10, playerPosition.y + 15, 3, 15);
     ellipse (playerPosition.x + 20, playerPosition.y + 15, 3, 15);
   }
@@ -35,11 +37,13 @@ class Player {
     if (pressingUp == true) {
       playerVelocity.y = -10;
     }
+    //adds acceleration to player movement
     playerVelocity.y += acceleration.y;
     playerPosition.add(playerVelocity);
   }
 
 //checks if up arrow is pressed
+//pressingUp boolean = true
   void keyPressed() {
     if (keyCode == UP) {
       pressingUp = true;
@@ -47,6 +51,7 @@ class Player {
   }
 
 //checks if up arrow is released
+//pressingUp boolean = false
   void keyReleased() {
     if (keyCode == UP) {
       pressingUp = false;

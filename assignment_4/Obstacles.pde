@@ -5,6 +5,7 @@ class Obstacle {
     stroke(#FF0303);
     strokeWeight(2);
     fill(0);
+    //keeps position consistent and randomizes obstacle size
     rect(obstaclePosition.x, obstaclePosition.y, obstacleSize.x, obstacleSize.y);
   }
 
