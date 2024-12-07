@@ -1,5 +1,5 @@
 //Kira Chen
-//assignment 4
+//Assignment 4
 
 //global variables for player and obstacles
 //allows for collision to be detected in main code
@@ -18,8 +18,7 @@ int timer = 30;
 int frameRate = 60;
 
 //checked to trigger game over or win screen
-boolean startScreen;
-boolean gamePlay;
+boolean startScreen = true;
 boolean gameOver;
 boolean gameWin;
 
@@ -34,6 +33,36 @@ void setup() {
 }
 
 void draw() {
+  startScreen();
+  
+  if (startScreen == false){
+  gamePlay();
+  }
+}
+
+//start screen function
+void startScreen() {
+  //draws start screen
+  fill(0);
+  rect (0, 0, width, height);
+  fill(#FF00E6);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("PRESS UP ARROW KEY", width/2, 130);
+  text("TO JUMP OVER", width/2, 180);
+  text("OBSTACLES", width/2, 230);
+  textSize(32);
+  text("Press ENTER to begin", width/2, 320);
+  
+  //start screen disappears when enter key is pressed and gameplay begins
+  //start screen is false until game is opened again, so start screen only appears once
+  if (keyCode == ENTER){
+    startScreen = false;
+  }
+}
+
+//triggers once start screen is false
+void gamePlay(){
   //background
   background(#13021F);
 
@@ -78,28 +107,6 @@ void keyPressed() {
 void keyReleased() {
   player.keyReleased();
 }
-
-void startScreen() {
-  fill(0);
-  rect (0, 0, width, height);
-  fill(#FF00E6);
-  textSize(40);
-  textAlign(CENTER, CENTER);
-  text("PRESS UP ARROW KEY TO JUMP", width/2, height/2);
-  text("OVER OBSTACLES", width/2, 290);
-  textSize(32);
-  text("Press ENTER to begin", width/2, 320);
-  
-  if (keyCode == ENTER){
-    
-  }
-  
-}
-
-void gamePlay(){
-  
-}
-
 
 //checks if collision occurs between the player and obstacles
 //if detected, changes game over boolelan to true
