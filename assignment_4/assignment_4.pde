@@ -101,8 +101,16 @@ void timer() {
 
 //displays winn screen
 void gameWin() {
-  fill(#03FF32);
-  rect (width/2, 10, 50, 50);
+  stroke(#00FF30);
+  fill(0);
+  rect (0, 0, width, height);
+  //display "Win" text on screen
+  fill(#00FF30);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text("WIN", width/2, height/2);
+  textSize(32);
+  text("Click to reset", width/2, 290);
 
   obstaclePosition.x = 200;
 
@@ -113,8 +121,16 @@ void gameWin() {
 
 //displays game over screen
 void gameOver() {
-  fill(#FF0303);
-  rect (width/2, height/2, 50, 50);
+  stroke(#FF0000);
+  fill(0);
+  rect (0, 0, width, height);
+  //display "Game Over" text on screen
+  fill(#FF0000);
+  textSize(60);
+  textAlign(CENTER, CENTER);
+  text("GAME OVER", width/2, height/2);
+  textSize(32);
+  text("Click to reset", width/2, 290);
 
   obstaclePosition.x = 200;
 
@@ -123,6 +139,7 @@ void gameOver() {
   }
 }
 
+//OMG WHAT DA HELL
 void reset() {
   if (gameWin == true && mousePressed){
   gameWin = false;
