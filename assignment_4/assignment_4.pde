@@ -14,6 +14,7 @@ PVector obstaclePosition = new PVector (500, 300 - obstacleSize.y);
 float obstacleSpeed = 5;
 
 //sets timer to 30 seconds
+//once 30 seconds are over player wins
 int timer = 30;
 int frameRate = 60;
 
@@ -22,21 +23,29 @@ boolean startScreen = true;
 boolean gameOver;
 boolean gameWin;
 
+//declaring objects
 Player player;
 Obstacle obstacle;
-Lines lines;
+//sets size of lines array to 10 to give the appearance of many speed lines
+Lines [] lines = new Lines [10];
 
 void setup() {
   size (400, 400);
 
+//creates objects
   player = new Player();
   obstacle = new Obstacle ();
-  lines = new Lines ();
+  for (int i = 0; i < lines.length; i++) {
+   lines [i] = new Lines(); 
+  }
+  
 }
 
 void draw() {
+  //displays start screen
   startScreen();
   
+  //when start screen is turned off gameplay begins
   if (startScreen == false){
   gamePlay();
   }
@@ -73,10 +82,12 @@ void gamePlay(){
   strokeWeight(3);
   fill(0);
   rect(0, 300, 398, 138);
-
+  
   //displays and moves speed lines
-  lines.display();
-  lines.move();
+  for (int i = 0; i < lines.length; i++) {
+   lines[i].display();
+   lines[i].move();
+  }
   
   //displays and moves player
   //ensures player stays above ground level
