@@ -3,6 +3,7 @@
 
 PVector playerSize = new PVector (30, 40);
 PVector obstacleSize = new PVector (random (20, 60), random (20, 200));
+boolean gameOver;
 
 Player player;
 Obstacle obstacle;

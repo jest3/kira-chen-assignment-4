@@ -20,7 +20,7 @@ class Obstacle {
       obstacleSize = new PVector (random(20, 60), random(20, 200));
       position.x = 500;
       position.y = 300 - obstacleSize.y;
-      speed = random (5, 15);
+      speed = random (5, 10);
     }
   }
 }
