@@ -29,6 +29,8 @@ class Player {
     }
   }
 
+//checks if up arrow is pressed, moves player up as if jumping if key is pressed
+//if up arrow is not being pressed player position is unaffected, seeming like the player falls
   void move() {
     if (pressingUp == true) {
       playerVelocity.y = -10;
@@ -37,12 +39,14 @@ class Player {
     playerPosition.add(playerVelocity);
   }
 
+//checks if up arrow is pressed
   void keyPressed() {
     if (keyCode == UP) {
       pressingUp = true;
     }
   }
 
+//checks if up arrow is released
   void keyReleased() {
     if (keyCode == UP) {
       pressingUp = false;

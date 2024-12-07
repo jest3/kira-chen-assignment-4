@@ -1,10 +1,12 @@
 class Obstacle {
   float speed;
 
+  //constructor
   Obstacle() {
     speed = random(5, 20);
   }
 
+  //draws obstacles
   void display() {
     stroke(#FF0303);
     strokeWeight(2);
@@ -12,6 +14,8 @@ class Obstacle {
     rect(obstaclePosition.x, obstaclePosition.y, obstacleSize.x, obstacleSize.y);
   }
 
+  //moves obstacles from right side of screen to left
+  //resets position, size and speed once off screen so it gives the illusion of different obstacles coming through
   void move() {
     obstaclePosition.x -= speed;
     if (obstaclePosition.x < -100) {
