@@ -18,6 +18,8 @@ int timer = 30;
 int frameRate = 60;
 
 //checked to trigger game over or win screen
+boolean startScreen;
+boolean gamePlay;
 boolean gameOver;
 boolean gameWin;
 
@@ -77,6 +79,28 @@ void keyReleased() {
   player.keyReleased();
 }
 
+void startScreen() {
+  fill(0);
+  rect (0, 0, width, height);
+  fill(#FF00E6);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("PRESS UP ARROW KEY TO JUMP", width/2, height/2);
+  text("OVER OBSTACLES", width/2, 290);
+  textSize(32);
+  text("Press ENTER to begin", width/2, 320);
+  
+  if (keyCode == ENTER){
+    
+  }
+  
+}
+
+void gamePlay(){
+  
+}
+
+
 //checks if collision occurs between the player and obstacles
 //if detected, changes game over boolelan to true
 void obstacleCollision() {
@@ -95,7 +119,7 @@ void timer() {
   if (frameCount % frameRate == 0 && gameOver == false && gameWin == false) {
     timer--;
   }
-  
+
   //if timer reaches 0 win condition is reached
   //timer can't reach 0 to trigger game win if gameOver is true
   if (timer <= 0 && gameOver == false) {
@@ -171,8 +195,8 @@ void reset() {
     playerPosition = new PVector (50, 260);
   }
 
-//same idea for game over screen
-//I probably could've wrote it all in the same statement but I seperated them cause I was looking for errors
+  //same idea for game over screen
+  //I probably could've wrote it all in the same statement but I seperated them cause I was looking for errors
   if (gameOver == true && mousePressed) {
     gameWin = false;
     gameOver = false;
