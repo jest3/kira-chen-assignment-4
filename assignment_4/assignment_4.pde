@@ -24,12 +24,14 @@ boolean gameWin;
 
 Player player;
 Obstacle obstacle;
+Lines lines;
 
 void setup() {
   size (400, 400);
 
   player = new Player();
   obstacle = new Obstacle ();
+  lines = new Lines ();
 }
 
 void draw() {
@@ -72,6 +74,10 @@ void gamePlay(){
   fill(0);
   rect(0, 300, 398, 138);
 
+  //displays and moves speed lines
+  lines.display();
+  lines.move();
+  
   //displays and moves player
   //ensures player stays above ground level
   player.display();
