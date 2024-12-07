@@ -10,9 +10,10 @@ PVector playerVelocity = new PVector (0, 0);
 
 PVector obstacleSize = new PVector (random (20, 60), random (20, 200));
 PVector obstaclePosition = new PVector (500, 300 - obstacleSize.y);
+float obstacleSpeed = 5;
 
 //sets timer to 30 seconds
-int timer = 2;
+int timer = 30;
 int frameRate = 60;
 
 //checked to trigger game over or win screen
@@ -56,12 +57,12 @@ void draw() {
   timer();
 
   //if timer reaches 0, gameWin is true and displays win screen
-  if (gameWin && !gameOver) {
+  if (gameWin && gameOver == false) {
     gameWin();
   }
 
   //if collision between player and obstacles is detected and gameOver is true display loss screem
-  if (gameOver && !gameWin) {
+  if (gameOver && gameWin == false) {
     gameOver();
   }
 }
@@ -89,11 +90,11 @@ void obstacleCollision() {
 //timer function
 void timer() {
   //decreases timer by 1 every 60 frames
-  if (frameCount % frameRate == 0 && !gameOver && !gameWin) {
+  if (frameCount % frameRate == 0 && gameOver == false && gameWin == false) {
     timer--;
   }
   //if timer reaches 0 win condition is reached
-  if (timer <= 0 && !gameOver) {
+  if (timer <= 0 && gameOver == false) {
     gameWin = true;
     gameOver = false;
   }
@@ -139,7 +140,7 @@ void gameOver() {
   }
 }
 
-//OMG WHAT DA HELL
+//
 void reset() {
   if (gameWin == true && mousePressed){
   gameWin = false;
@@ -148,6 +149,7 @@ void reset() {
 
   obstacleSize = new PVector (random (20, 60), random (20, 200));
   obstaclePosition = new PVector (500, 300 - obstacleSize.y);
+  obstacleSpeed = 5;
   playerPosition = new PVector (50, 260);
 
   frameCount = 0;
@@ -160,6 +162,7 @@ void reset() {
 
   obstacleSize = new PVector (random (20, 60), random (20, 200));
   obstaclePosition = new PVector (500, 300 - obstacleSize.y);
+  obstacleSpeed = 5;
   playerPosition = new PVector (50, 260);
   }
 }

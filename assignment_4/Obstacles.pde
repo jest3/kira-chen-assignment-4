@@ -1,10 +1,4 @@
 class Obstacle {
-  float speed;
-
-  //constructor
-  Obstacle() {
-    speed = random(5, 20);
-  }
 
   //draws obstacles
   void display() {
@@ -17,12 +11,12 @@ class Obstacle {
   //moves obstacles from right side of screen to left
   //resets position, size and speed once off screen so it gives the illusion of different obstacles coming through
   void move() {
-    obstaclePosition.x -= speed;
+    obstaclePosition.x -= obstacleSpeed;
     if (obstaclePosition.x < -100) {
       obstacleSize = new PVector (random(20, 60), random(20, 200));
       obstaclePosition.x = 500;
       obstaclePosition.y = 300 - obstacleSize.y;
-      speed = random (5, 15);
+      obstacleSpeed = random (5, 10);
     }
   }
 }
